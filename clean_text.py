@@ -8,6 +8,8 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 import re
 
+stopwords = [i.lower() for i in nltk.corpus.stopwords.words('english') + [chr(i) for i in range(97, 123)]]
+
 def clean_text(text):
     return str(re.sub("\s+", " ", ' '.join([i for i in re.sub("[^9A-Za-z ]", "" , re.sub("\\n", "", re.sub("\s+", " ", re.sub(r'http\S+', '', text.lower())))).split(" ") if i not in stopwords])))
 
