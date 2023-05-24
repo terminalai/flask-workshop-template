@@ -7,6 +7,7 @@ from clean_text import clean_texts
 
 
 from pathlib import Path
+CWD = Path(__file__).parent.resolve()
 
 model = tf.keras.models.load_model(CWD / "models/cyberbullying-bdlstm.h5")
 
