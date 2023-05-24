@@ -5,7 +5,12 @@ import tensorflow as tf
 
 from clean_text import clean_texts
 
-model = tf.keras.models.load_model('models/cyberbullying-bdlstm.h5')
+
+from pathlib import Path
+THIS_FOLDER = Path(__file__).parent.resolve()
+model = THIS_FOLDER / "models/cyberbullying-bdlstm.h5"
+
+model = tf.keras.models.load_model(model)
 
 with open("models/tokenizer.json") as file:
     tokenizer = tf.keras.preprocessing.text.tokenizer_from_json(file.read())
@@ -54,4 +59,4 @@ def webhook():
     return 'Updated PythonAnywhere successfully', 200
         
 if __name__ == "__main__": 
-    app.run()
+    app.run(debug=True)
