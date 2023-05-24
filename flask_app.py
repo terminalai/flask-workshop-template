@@ -7,12 +7,10 @@ from clean_text import clean_texts
 
 
 from pathlib import Path
-THIS_FOLDER = Path(__file__).parent.resolve()
-model = THIS_FOLDER / "models/cyberbullying-bdlstm.h5"
 
-model = tf.keras.models.load_model(model)
+model = tf.keras.models.load_model(CWD / "models/cyberbullying-bdlstm.h5")
 
-with open("models/tokenizer.json") as file:
+with open(CWD / "models/tokenizer.json") as file:
     tokenizer = tf.keras.preprocessing.text.tokenizer_from_json(file.read())
 
 app = Flask(__name__)
