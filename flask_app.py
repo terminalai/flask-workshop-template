@@ -52,7 +52,7 @@ import git, os
 
 @app.route('/update_server', methods=['POST'])
 def webhook():
-    repo = git.Repo(os.curdir)
+    repo = git.Repo(CWD)
     origin = repo.remotes.origin
     origin.pull()
     return 'Updated PythonAnywhere successfully', 200
