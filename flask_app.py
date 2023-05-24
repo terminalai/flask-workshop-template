@@ -43,5 +43,15 @@ def get():
     # return {"user": f"<div class='container darker'><span class='user-msg'>{userText}</span><br><span class='time-right'>{time()}</span></div>", "bot": f"<div class='container'><span>{botText}</span><br><span class='time-left'>{time()}</span></div>"}
 
 
+# Github webhooking
+import git, os
+
+@app.route('/update_server', methods=['POST'])
+def webhook():
+    repo = git.Repo(os.curdir)
+    origin = repo.remotes.origin
+    origin.pull()
+    return 'Updated PythonAnywhere successfully', 200
+        
 if __name__ == "__main__": 
-    app.run(debug=True)
+    app.run()
